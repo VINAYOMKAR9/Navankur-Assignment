@@ -1,6 +1,5 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
 
-
 const CartContext = createContext();
 const useCart = () => useContext(CartContext);
 
@@ -27,4 +26,19 @@ const CartProvider = ({ children }) => {
   );
 };
 
-export default cart
+// Shopping Cart Component
+const Cart = () => {
+  const { cart, checkout } = useCart();
+
+  return (
+    <div>
+      <h2>Shopping Cart</h2>
+      {cart.map((item, index) => (
+        <p key={index}>{item.title} - ${item.price}</p>
+      ))}
+      <button onClick={checkout}>Buy</button>
+    </div>
+  );
+};
+export default Cart
+export {CartProvider}
